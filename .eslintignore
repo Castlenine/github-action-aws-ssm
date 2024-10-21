@@ -1,0 +1,80 @@
+# Node modules
+node_modules
+
+# Outputs
+dist
+
+# Logs
+*.log
+*.logs
+*.log-*
+*.log.*
+*-debug.log
+
+# Specific files to ignore
+.commitlintrc.ts
+.czrc
+.eslintignore
+.eslintrc.cjs
+.gitignore
+.lintstagedrc.json
+.npmrc
+.nvmrc
+.prettierignore
+*.7z
+*.css
+*.doc
+*.docx
+*.fig
+*.gif
+*.gz
+*.html
+*.ico
+*.jpeg
+*.jpg
+*.json
+*.md
+*.mdx
+*.pdf
+*.png
+*.rar
+*.sass
+*.scss
+*.svg
+*.tar
+*.tgz
+*.txt
+*.webp
+*.yaml
+*.yml
+*.zip
+package.json
+tsconfig.json
+
+# Documentation folder
+/docs/**/*
+
+# Ignore backup & local files
+*.backup
+*.backup.*
+*.bak
+*.bak.*
+*.local
+*.local.*
+*.local-backup
+*.local-backup.*
+
+# OS generated files
+# MacOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# Ignore lock files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Env files
+.env
+.env.*

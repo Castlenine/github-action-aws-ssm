@@ -1,0 +1,54 @@
+# Node modules
+node_modules
+
+# Outputs
+dist
+
+# Logs
+*.log
+*.logs
+*.log-*
+*.log.*
+*-debug.log
+
+# Not parseable files
+.czrc
+.eslintignore
+.gitignore
+.npmrc
+.nvmrc
+.prettierignore
+*.md
+*.txt
+*.zip
+
+# Documentation folder
+/docs/**/*
+
+# TypeScript config
+tsconfig.json
+
+# Ignore backup & local files
+*.backup
+*.backup.*
+*.bak
+*.bak.*
+*.local
+*.local.*
+*.local-backup
+*.local-backup.*
+
+# OS generated files
+# MacOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# Ignore lock files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Env files
+.env
+.env.*

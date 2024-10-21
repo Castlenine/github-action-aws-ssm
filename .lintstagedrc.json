@@ -1,0 +1,6 @@
+{
+  "*": [
+    "prettier --config \"./.prettierrc.yaml\" --ignore-path \"./.prettierignore\" --write",
+    "eslint --config \"./.eslintrc.cjs\" --ignore-path \"./.eslintignore\" --fix"
+  ]
+}

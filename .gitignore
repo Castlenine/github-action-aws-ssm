@@ -1,0 +1,29 @@
+# Logs
+*.log
+*.logs
+*.log-*
+*.log.*
+*-debug.log
+
+# Ignore backup & local files
+*.backup
+*.backup.*
+*.bak
+*.bak.*
+*.local
+*.local.*
+*.local-backup
+*.local-backup.*
+
+# OS generated files
+# MacOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# Env files
+.env
+.env.*
+#! Exception
+!.env.example
+!.env.*.example

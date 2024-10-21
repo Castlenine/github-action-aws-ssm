@@ -1,0 +1,91 @@
+name: 'AWS SSM Command'
+author: 'Alexandre Castlenine <alexandre@castlenine.io>'
+
+description:
+  'Execute remote commands or scripts on AWS EC2 instances using AWS Systems Manager (SSM) with Github Actions'
+
+branding:
+  icon: 'upload-cloud'
+  color: 'orange'
+
+inputs:
+  aws-access-key-id:
+    required: true
+    description: 'AWS access key ID'
+  aws-secret-access-key:
+    required: true
+    description: 'AWS secret access key'
+  aws-region:
+    required: true
+    description: 'AWS region of the instance'
+  instance-ids:
+    required: true
+    description: 'AWS EC2 Instance ID or IDs'
+  command:
+    required: false
+    description: 'Command to execute'
+    default: 'echo "Hello World from Github Actions"'
+  user:
+    required: false
+    description: 'User to execute the command as'
+    default: 'root'
+  home-env:
+    required: false
+    description: 'Environment variable HOME to export in the command'
+    default: '/home/ubuntu'
+  working-directory:
+    required: false
+    description: 'Command working directory'
+    default: '/home/ubuntu'
+  script-parent-folder-path:
+    description: 'Script parent folder path if the command is a script file'
+    required: false
+    default: '.github'
+  wait-for-completion:
+    description: 'Whether to wait for the command to complete before finishing the action'
+    required: false
+    default: 'true'
+  polling-interval-seconds:
+    description: 'Polling interval in seconds when waiting for command completion'
+    required: false
+    default: '5'
+  timeout-seconds:
+    description: 'Timeout in seconds when waiting for command completion'
+    required: false
+    default: '1200'
+  comment:
+    required: false
+    description: 'Comment for the command'
+    default: 'Executed by Github Actions'
+  action-outputs:
+    required: false
+    description: 'If the action have outputs'
+    default: 'true'
+  console-log:
+    required: false
+    description: 'If the command response and result have a console log'
+    default: 'true'
+
+outputs:
+  request-id:
+    description: 'Request ID'
+  request-date-time:
+    description: 'Request date time'
+  request-status:
+    description: 'Request status'
+  request-status-details:
+    description: 'Request status details'
+  command-status:
+    description: 'Command status'
+  command-status-details:
+    description: 'Command status details'
+  command-output:
+    description: 'Command output'
+  command-error:
+    description: 'Command error'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+  post-if: 'cancelled()'
+  post: 'dist/cancel.js'
