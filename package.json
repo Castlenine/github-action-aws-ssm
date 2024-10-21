@@ -1,5 +1,5 @@
 {
-  "name": "github-action-aws-ssm",
+  "name": "aws-ssm-command",
   "version": "1.0.0",
   "description": "Execute remote commands or scripts on AWS EC2 instances using AWS Systems Manager (SSM) with Github Actions",
   "main": "dist/index.js",
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Castlenine/github-action-aws-ssm.git"
+    "url": "git+https://github.com/Castlenine/aws-ssm-github-action.git"
   },
   "bugs": {
-    "url": "https://github.com/Castlenine/github-action-aws-ssm/issues"
+    "url": "https://github.com/Castlenine/aws-ssm-github-action/issues"
   },
   "scripts": {
     "build": "tsc",

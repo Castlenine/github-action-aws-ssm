@@ -1,6 +1,6 @@
 <div align="center">
 
-# `github-action-aws-ssm`
+# `aws-ssm-command`
 
 [![github-actions.badge]][github-actions] [![contribution.badge]][contribution]
 
@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: AWS SSM Command
-        uses: Castlenine/github-action-aws-ssm@v1
+        uses: Castlenine/aws-ssm-command@v1
         id: ssm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # You can inject any environment variable in the command execution. Don't use "-" for the environment name. Use "_" instead. Make sure that your environment variables are not creating a conflict. Any environment variable with 'SSM_IGNORE' in the name will not be exported in the command execution
@@ -72,7 +72,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: AWS SSM Command
-        uses: Castlenine/github-action-aws-ssm@v1
+        uses: Castlenine/aws-ssm-command@v1
         id: ssm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # You can inject any environment variable in the command execution. Don't use "-" for the environment name. Use "_" instead. Make sure that your environment variables are not creating a conflict. Any environment variable with 'SSM_IGNORE' in the name will not be exported in the command execution
@@ -134,7 +134,7 @@ jobs:
 - [AWS SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html)
 - [AWS SSM SendCommand](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/ssm/command/SendCommandCommand/)
 
-[github-actions]: https://github.com/marketplace/actions/aws-ssm
+[github-actions]: https://github.com/marketplace/actions/aws-ssm-command
 [github-actions.badge]: https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white
-[contribution]: https://github.com/Castlenine/github-action-aws-ssm
+[contribution]: https://github.com/Castlenine/aws-ssm-github-action
 [contribution.badge]: https://img.shields.io/badge/contributions-welcome-green
