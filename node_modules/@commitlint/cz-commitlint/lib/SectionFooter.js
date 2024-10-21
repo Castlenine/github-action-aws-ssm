@@ -1,0 +1,132 @@
+import wrap from 'word-wrap';
+import Question from './Question.js';
+import getRuleQuestionConfig from './services/getRuleQuestionConfig.js';
+import { getPromptMessages, getPromptQuestions } from './store/prompts.js';
+import { getRule } from './store/rules.js';
+import getLeadingBlankFn from './utils/leading-blank-fn.js';
+import { getMaxLength } from './utils/rules.js';
+export class FooterQuestion extends Question {
+    footerMaxLength;
+    footerMinLength;
+    constructor(name, questionConfig, footerMaxLength, footerMinLength) {
+        super(name, questionConfig);
+        this.footerMaxLength = footerMaxLength ?? Infinity;
+        this.footerMinLength = footerMinLength ?? 0;
+    }
+    beforeQuestionStart(answers) {
+        const footerRemainLength = this.footerMaxLength - combineCommitMessage(answers).length - '\n'.length;
+        this.maxLength = Math.min(this.maxLength, footerRemainLength);
+        this.minLength = Math.min(this.minLength, this.footerMinLength);
+    }
+}
+export function getQuestions() {
+    const footerQuestionConfig = getRuleQuestionConfig('footer');
+    if (!footerQuestionConfig)
+        return [];
+    const footerMaxLength = footerQuestionConfig.maxLength;
+    const footerMinLength = footerQuestionConfig.minLength;
+    const fields = [
+        'isBreaking',
+        'breakingBody',
+        'breaking',
+        'isIssueAffected',
+        'issuesBody',
+        'issues',
+        'footer',
+    ];
+    return fields
+        .filter((name) => name in getPromptQuestions())
+        .map((name) => {
+        const questions = getPromptQuestions();
+        const questionConfigs = {
+            title: questions[name]?.description ?? '',
+            messages: getPromptMessages(),
+            footerMaxLength,
+            footerMinLength,
+        };
+        if (name === 'isBreaking') {
+            Object.assign(questionConfigs, {
+                defaultValue: false,
+            });
+        }
+        if (name === 'breakingBody') {
+            Object.assign(questionConfigs, {
+                when: (answers) => {
+                    return answers.isBreaking && !answers.body;
+                },
+            });
+        }
+        if (name === 'breaking') {
+            Object.assign(questionConfigs, {
+                when: (answers) => {
+                    return answers.isBreaking;
+                },
+            });
+        }
+        if (name === 'isIssueAffected') {
+            Object.assign(questionConfigs, {
+                defaultValue: false,
+            });
+        }
+        if (name === 'issuesBody') {
+            Object.assign(questionConfigs, {
+                when: (answers) => {
+                    return (answers.isIssueAffected && !answers.body && !answers.breakingBody);
+                },
+            });
+        }
+        if (name === 'issues') {
+            Object.assign(questionConfigs, {
+                when: (answers) => {
+                    return answers.isIssueAffected;
+                },
+            });
+        }
+        if (name === 'footer') {
+            Object.assign(questionConfigs, {
+                ...footerQuestionConfig,
+            });
+        }
+        const instance = new FooterQuestion(name, questionConfigs, footerMaxLength, footerMinLength);
+        return instance.question;
+    });
+}
+export function combineCommitMessage(answers) {
+    // TODO references-empty
+    // TODO signed-off-by
+    const maxLineLength = getMaxLength(getRule('footer', 'max-line-length'));
+    const leadingBlankFn = getLeadingBlankFn(getRule('footer', 'leading-blank'));
+    const { footer, breaking, issues } = answers;
+    const footerNotes = [];
+    if (breaking) {
+        const BREAKING_CHANGE = 'BREAKING CHANGE: ';
+        const message = BREAKING_CHANGE + breaking.replace(new RegExp(`^${BREAKING_CHANGE}`), '');
+        footerNotes.push(maxLineLength < Infinity
+            ? wrap(message, {
+                width: maxLineLength,
+                trim: true,
+                indent: '',
+            })
+            : message.trim());
+    }
+    if (issues) {
+        footerNotes.push(maxLineLength < Infinity
+            ? wrap(issues, {
+                width: maxLineLength,
+                trim: true,
+                indent: '',
+            })
+            : issues.trim());
+    }
+    if (footer) {
+        footerNotes.push(maxLineLength < Infinity
+            ? wrap(footer, {
+                width: maxLineLength,
+                trim: true,
+                indent: '',
+            })
+            : footer);
+    }
+    return leadingBlankFn(footerNotes.join('\n'));
+}
+//# sourceMappingURL=SectionFooter.js.map

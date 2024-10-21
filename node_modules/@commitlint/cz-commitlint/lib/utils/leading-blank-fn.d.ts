@@ -1,0 +1,8 @@
+import type { Rule } from '../types.js';
+/**
+ * Get forced leading for rule
+ * @param rule to parse
+ * @return transform function applying the leading
+ */
+export default function getLeadingBlankFn(rule?: Rule): (input: string) => string;
+//# sourceMappingURL=leading-blank-fn.d.ts.map
