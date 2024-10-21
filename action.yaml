@@ -1,4 +1,4 @@
-name: 'AWS SSM Command'
+name: 'aws-ssm-command'
 author: 'Alexandre Castlenine <alexandre@castlenine.io>'
 
 description:
