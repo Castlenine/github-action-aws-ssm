@@ -18,8 +18,8 @@ Execute remote commands or scripts on AWS EC2 instances using AWS Systems Manage
 
 ## Requirements
 
-1. Assign the AWS IAM role `AmazonSSMFullAccess` or more restrictive permissions to your IAM user
-2. Ensure your EC2 instance has an IAM role that includes `AmazonSSMFullAccess` or more restrictive permissions
+1. Assign the AWS IAM role `AmazonSSMFullAccess` to your IAM user for your Github Actions workflow (i.e.: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`)
+2. Ensure your EC2 instance has an IAM role that includes `AmazonSSMManagedInstanceCore` (recommended) or `AmazonSSMFullAccess`
 
 ## Usage example
 
