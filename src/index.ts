@@ -58,10 +58,10 @@ const sanitizeInputs = (): SanitizedInputs => {
 	}
 
 	let sanitizedCommand = INPUTS.command;
-	const environmentVariables: Record<string, string> = {};
+	const ENVIRONMENT_VARIABLES: Record<string, string> = {};
 
 	// Check if the command is a script in the parent folder path
-	if (INPUTS.command.startsWith(INPUTS.scriptParentFolderPath + '/')) {
+	if (INPUTS.command.startsWith(INPUTS.scriptParentFolderPath.replace(/\/*$/, '/'))) {
 		const SCRIPT_PATH = path.join(process.env.GITHUB_WORKSPACE || '', INPUTS.command);
 
 		// eslint-disable-next-line security/detect-non-literal-fs-filename
@@ -78,14 +78,14 @@ const sanitizeInputs = (): SanitizedInputs => {
 	for (const [key, value] of Object.entries(process.env)) {
 		if (value !== undefined) {
 			// eslint-disable-next-line security/detect-object-injection
-			environmentVariables[key] = value;
+			ENVIRONMENT_VARIABLES[key] = value;
 		}
 	}
 
 	return {
 		...INPUTS,
 		command: sanitizedCommand,
-		environmentVariables,
+		environmentVariables: ENVIRONMENT_VARIABLES,
 	};
 };
 

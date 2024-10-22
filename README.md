@@ -42,7 +42,7 @@ jobs:
         uses: Castlenine/aws-ssm-command@v1
         id: ssm
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # You can inject any environment variable in the command execution. Don't use "-" for the environment name. Use "_" instead. Make sure that your environment variables are not creating a conflict. Any environment variable with 'SSM_IGNORE' in the name will not be exported in the command execution
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # You can inject any environment variable in the command execution. Don't use "-" for the environment name. Use "_" instead. Make sure that your environment variables are not creating a conflict. Any environment variable with "SSM_IGNORE" in the name will not be exported in the command execution
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -75,15 +75,15 @@ jobs:
         uses: Castlenine/aws-ssm-command@v1
         id: ssm
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # You can inject any environment variable in the command execution. Don't use "-" for the environment name. Use "_" instead. Make sure that your environment variables are not creating a conflict. Any environment variable with 'SSM_IGNORE' in the name will not be exported in the command execution
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # You can inject any environment variable in the command execution. Don't use "-" for the environment name. Use "_" instead. Make sure that your environment variables are not creating a conflict. Any environment variable with "SSM_IGNORE" in the name will not be exported in the command execution
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
           instance-ids: ${{ secrets.INSTANCE_ID }}
           working-directory: '/home/ubuntu'
-          script-parent-folder-path: '.github' # Without the last '/'. Can be the main parent folder or with subfolders
-          command: '.github/scripts/example.sh' # Must be in the parent folder path. Default is '.github'
+          script-parent-folder-path: '.github' # Can be the main parent folder or with subfolders
+          command: '.github/scripts/example.sh' # Must be in the parent folder path
           comment: 'Bash script executed by Github Actions'
 
       - name: Capture SSM command outputs
