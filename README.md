@@ -4,7 +4,7 @@
 
 [![github-actions.badge]][github-actions] [![contribution.badge]][contribution]
 
-Execute remote commands or scripts on AWS EC2 instances using AWS Systems Manager (SSM)
+Execute remote commands or scripts on AWS EC2 instances using AWS Systems Manager (SSM) with Github Actions
 </div>
 
 ## Contents
@@ -136,5 +136,5 @@ jobs:
 
 [github-actions]: https://github.com/marketplace/actions/aws-ssm-command
 [github-actions.badge]: https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white
-[contribution]: https://github.com/Castlenine/aws-ssm-github-action
+[contribution]: https://github.com/Castlenine/aws-ssm-command
 [contribution.badge]: https://img.shields.io/badge/contributions-welcome-green
