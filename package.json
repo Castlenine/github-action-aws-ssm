@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Castlenine/aws-ssm-github-action.git"
+    "url": "git+https://github.com/Castlenine/aws-ssm-command.git"
   },
   "bugs": {
-    "url": "https://github.com/Castlenine/aws-ssm-github-action/issues"
+    "url": "https://github.com/Castlenine/aws-ssm-command/issues"
   },
   "scripts": {
     "build": "tsc",
@@ -27,10 +27,10 @@
   },
   "dependencies": {
     "@actions/core": "1.11.1",
-    "@aws-sdk/client-ssm": "^3.675.0"
+    "@aws-sdk/client-ssm": "^3.679.0"
   },
   "devDependencies": {
-    "@aws-sdk/types": "^3.667.0",
+    "@aws-sdk/types": "^3.679.0",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@commitlint/cz-commitlint": "^19.5.0",
@@ -47,7 +47,7 @@
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-security": "^1.7.1",
-    "lefthook": "^1.7.22",
+    "lefthook": "^1.8.1",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "prettier-eslint": "^16.3.0",
